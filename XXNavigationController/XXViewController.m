@@ -38,7 +38,8 @@
     }
     label.text = @"sadfasdfsadfewejlkjuhwoiqjoi1234567891";
     
-    self.title = label.text;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.title = [NSString stringWithFormat:@"标题%d",self.navigationController.viewControllers.count];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = (CGRect){88,250,60,30};

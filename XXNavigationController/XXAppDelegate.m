@@ -10,6 +10,8 @@
 #import "XXViewController.h"
 #import "XXNavigationController.h"
 
+#define IOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
+
 @implementation XXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -21,6 +23,12 @@
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:root];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    
+    if (IOS7) {
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"title平铺X64.png"] forBarMetrics:UIBarMetricsDefault];
+        [application setStatusBarStyle:UIStatusBarStyleDefault];
+    }
     return YES;
 }
 

@@ -83,8 +83,9 @@ static CGFloat min_distance = 100;// 最小回弹距离
         
         _backGroundView.backgroundColor = [UIColor blackColor];
         
-        [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
     }
+    
+    [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
     
     _backGroundView.hidden = NO;
     
@@ -181,8 +182,8 @@ static CGFloat min_distance = 100;// 最小回弹距离
             
             _backGroundView.backgroundColor = [UIColor blackColor];
             
-            [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
         }
+        [self.view.superview insertSubview:self.backGroundView belowSubview:self.view];
         
         _backGroundView.hidden = NO;
         

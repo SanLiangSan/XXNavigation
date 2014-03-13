@@ -68,6 +68,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
         [self popAnimation];
         return nil;
     } else {
+        [self.screenShotList removeLastObject];
         return [super popViewControllerAnimated:animated];
     }
 }

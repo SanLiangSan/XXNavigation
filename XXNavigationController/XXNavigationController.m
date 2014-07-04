@@ -96,13 +96,13 @@ static CGFloat min_distance = 100;// 最小回弹距离
     
     lastScreenShotView = [[UIImageView alloc] initWithImage:lastScreenShot];
     
-    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,320,MainScreenHeight};
+    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,MainScreenWidth,lastScreenShot.size.height};
     
     [self.backGroundView addSubview:lastScreenShotView];
 
     [UIView animateWithDuration:0.4 animations:^{
         
-        [self moveViewWithX:320];
+        [self moveViewWithX:MainScreenWidth];
         
     } completion:^(BOOL finished) {
         [self gestureAnimation:NO];
@@ -144,7 +144,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
 // set lastScreenShotView 's position when paning
 - (void)moveViewWithX:(float)x
 {
-    x = x>320?320:x;
+    x = x>MainScreenWidth?MainScreenWidth:x;
     
     x = x<0?0:x;
     
@@ -152,7 +152,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
     frame.origin.x = x;
     self.view.frame = frame;
     // TODO
-    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float)+x*offset_float,0,320,MainScreenHeight};
+    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float)+x*offset_float,0,MainScreenWidth,lastScreenShotView.frame.size.height};
 }
 
 - (void)gestureAnimation:(BOOL)animated {
@@ -194,7 +194,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
         
         lastScreenShotView = [[UIImageView alloc] initWithImage:lastScreenShot];
         
-        lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,320,MainScreenHeight};
+        lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,MainScreenWidth,lastScreenShot.size.height};
         
         [self.backGroundView addSubview:lastScreenShotView];
         

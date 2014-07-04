@@ -198,6 +198,15 @@ static CGFloat min_distance = 100;// 最小回弹距离
         
         [self.backGroundView addSubview:lastScreenShotView];
         
+        // add shadow to stress left border.
+        self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.view.layer.shadowOpacity = 0.2f;
+        self.view.layer.shadowRadius = 4.0f;
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(5, 0, 5, 5);
+        CGRect shadowPathExcludingLeft = UIEdgeInsetsInsetRect(self.view.bounds, contentInsets);
+        CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowPathExcludingLeft].CGPath;
+        [self.view.layer setShadowPath:shadowPath];
+        
         //End paning, always check that if it should move right or move left automatically
     }else if (recoginzer.state == UIGestureRecognizerStateEnded){
         

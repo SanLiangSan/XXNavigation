@@ -121,7 +121,9 @@ static CGFloat min_distance = 100;// 最小回弹距离
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self.screenShotList addObject:[self capture]];
+    if ([self.viewControllers count]) {
+        [self.screenShotList addObject:[self capture]];
+    }
     [super pushViewController:viewController animated:animated];
 }
 
@@ -130,9 +132,9 @@ static CGFloat min_distance = 100;// 最小回弹距离
 // get the current view screen shot
 - (UIImage *)capture
 {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.view.window.bounds.size, self.view.window.opaque, 0.0);
     
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     

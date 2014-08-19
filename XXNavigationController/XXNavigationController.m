@@ -96,13 +96,13 @@ static CGFloat min_distance = 100;// 最小回弹距离
     
     lastScreenShotView = [[UIImageView alloc] initWithImage:lastScreenShot];
     
-    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,320,MainScreenHeight};
+    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,MainScreenWidth,lastScreenShot.size.height};
     
     [self.backGroundView addSubview:lastScreenShotView];
 
     [UIView animateWithDuration:0.4 animations:^{
         
-        [self moveViewWithX:320];
+        [self moveViewWithX:MainScreenWidth];
         
     } completion:^(BOOL finished) {
         [self gestureAnimation:NO];
@@ -121,7 +121,9 @@ static CGFloat min_distance = 100;// 最小回弹距离
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self.screenShotList addObject:[self capture]];
+    if ([self.viewControllers count]) {
+        [self.screenShotList addObject:[self capture]];
+    }
     [super pushViewController:viewController animated:animated];
 }
 
@@ -130,9 +132,9 @@ static CGFloat min_distance = 100;// 最小回弹距离
 // get the current view screen shot
 - (UIImage *)capture
 {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+    UIGraphicsBeginImageContextWithOptions(self.view.window.bounds.size, self.view.window.opaque, 0.0);
     
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
     
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -144,7 +146,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
 // set lastScreenShotView 's position when paning
 - (void)moveViewWithX:(float)x
 {
-    x = x>320?320:x;
+    x = x>MainScreenWidth?MainScreenWidth:x;
     
     x = x<0?0:x;
     
@@ -152,7 +154,7 @@ static CGFloat min_distance = 100;// 最小回弹距离
     frame.origin.x = x;
     self.view.frame = frame;
     // TODO
-    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float)+x*offset_float,0,320,MainScreenHeight};
+    lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float)+x*offset_float,0,MainScreenWidth,lastScreenShotView.frame.size.height};
 }
 
 - (void)gestureAnimation:(BOOL)animated {
@@ -194,9 +196,18 @@ static CGFloat min_distance = 100;// 最小回弹距离
         
         lastScreenShotView = [[UIImageView alloc] initWithImage:lastScreenShot];
         
-        lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,320,MainScreenHeight};
+        lastScreenShotView.frame = (CGRect){-(MainScreenWidth*offset_float),0,MainScreenWidth,lastScreenShot.size.height};
         
         [self.backGroundView addSubview:lastScreenShotView];
+        
+        // add shadow to stress left border.
+        self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.view.layer.shadowOpacity = 0.2f;
+        self.view.layer.shadowRadius = 4.0f;
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(5, 0, 5, 5);
+        CGRect shadowPathExcludingLeft = UIEdgeInsetsInsetRect(self.view.bounds, contentInsets);
+        CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowPathExcludingLeft].CGPath;
+        [self.view.layer setShadowPath:shadowPath];
         
         //End paning, always check that if it should move right or move left automatically
     }else if (recoginzer.state == UIGestureRecognizerStateEnded){

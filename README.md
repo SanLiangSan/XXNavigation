@@ -5,7 +5,7 @@
 ![](./XXNavigation.gif)
 ----
 ###How To Use ?
-We only to let our custom navigationController inheritance XXNavigantionController,also it has the system fuction :
+We only to let our custom NavigationController inheritance XXNavigantionController,for example :
 
 ```
 	XXViewController *root = [[XXViewController alloc] init];

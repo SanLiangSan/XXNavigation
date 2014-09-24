@@ -17,7 +17,7 @@ We only to let our custom NavigationController inheritance XXNavigantionControll
 ------
 
 ###Author
-	Hope Your Suggestions!
+	Expect Your Suggestions!
 
 - Email: <254458886@qq.com>
 

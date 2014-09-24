@@ -9,6 +9,10 @@
 #import "XXViewController.h"
 #import "XXNavigationController.h"
 
+#define KEY_WINDOW  [[UIApplication sharedApplication]keyWindow]
+#define MainScreenHeight [UIScreen mainScreen].bounds.size.height
+#define MainScreenWidth [UIScreen mainScreen].bounds.size.width
+
 @interface XXViewController ()
 
 @end
@@ -24,36 +28,37 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        self.extendedLayoutIncludesOpaqueBars = YES;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.navigationController.navigationBar.translucent = NO;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:(CGRect){0,0,320,100}];
-    label.center = CGPointMake(160,230);
-    [self.view addSubview:label];
-    NSMutableString *string  = [NSMutableString string];
-    for (int i = 0; i < 50; i ++) {
-        [string appendFormat:@"%d",self.navigationController.viewControllers.count];
-    }
-    label.text = @"sadfasdfsadfewejlkjuhwoiqjoi1234567891";
+    
+    // -----------------------------------------------------------------------
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRect){0,0,MainScreenWidth,MainScreenHeight}];
+    [self.view addSubview:imageView];
+    
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.title = [NSString stringWithFormat:@"标题%d",self.navigationController.viewControllers.count];
+    self.title = [NSString stringWithFormat:@"标题%lu",(unsigned long)self.navigationController.viewControllers.count];
+    NSUInteger count = self.navigationController.viewControllers.count;
+    if (count % 2 == 0) {
+        imageView.image = [UIImage imageNamed:@"image_0.JPG"];
+    } else {
+        imageView.image = [UIImage imageNamed:@"image_1.JPG"];
+    }
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = (CGRect){88,250,60,30};
-    [button setTitle:@"push" forState:UIControlStateNormal];
-    [self.view addSubview:button];
-    [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button1.frame = (CGRect){38,250,60,30};
-    [button1 setTitle:@"pop" forState:UIControlStateNormal];
-    [self.view addSubview:button1];
-    [button1 addTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self.view addGestureRecognizer:tap];
 	// Do any additional setup after loading the view.
 }
 
@@ -64,6 +69,10 @@
 - (void)push:(id)sender {
     XXViewController *viewC = [[XXViewController alloc] init];
     [self.navigationController pushViewController:viewC animated:YES];
+}
+
+- (void)tap:(UITapGestureRecognizer *)tapGesture {
+    [self push:nil];
 }
 
 - (void)didReceiveMemoryWarning

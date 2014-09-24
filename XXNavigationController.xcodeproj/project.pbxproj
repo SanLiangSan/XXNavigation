@@ -22,6 +22,8 @@
 		53294A7218C706DB0026A843 /* XXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53294A7118C706DB0026A843 /* XXNavigationController.m */; };
 		53294A7718C72A420026A843 /* XXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53294A7618C72A420026A843 /* XXViewController.m */; };
 		53294A7918C7572B0026A843 /* title平铺X64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53294A7818C7572B0026A843 /* title平铺X64@2x.png */; };
+		53943B1319D26D1A00E8443C /* image_0.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 53943B1119D26D1A00E8443C /* image_0.JPG */; };
+		53943B1419D26D1A00E8443C /* image_1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 53943B1219D26D1A00E8443C /* image_1.JPG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		53294A7518C72A420026A843 /* XXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXViewController.h; sourceTree = "<group>"; };
 		53294A7618C72A420026A843 /* XXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXViewController.m; sourceTree = "<group>"; };
 		53294A7818C7572B0026A843 /* title平铺X64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title平铺X64@2x.png"; sourceTree = "<group>"; };
+		53943B1119D26D1A00E8443C /* image_0.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_0.JPG; sourceTree = "<group>"; };
+		53943B1219D26D1A00E8443C /* image_1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_1.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 		53294A4718C706770026A843 /* XXNavigationController */ = {
 			isa = PBXGroup;
 			children = (
+				53943B1119D26D1A00E8443C /* image_0.JPG */,
+				53943B1219D26D1A00E8443C /* image_1.JPG */,
 				53294A7818C7572B0026A843 /* title平铺X64@2x.png */,
 				53294A5018C706770026A843 /* XXAppDelegate.h */,
 				53294A5118C706770026A843 /* XXAppDelegate.m */,
@@ -233,9 +239,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53943B1319D26D1A00E8443C /* image_0.JPG in Resources */,
 				53294A7918C7572B0026A843 /* title平铺X64@2x.png in Resources */,
 				53294A4C18C706770026A843 /* InfoPlist.strings in Resources */,
 				53294A5418C706770026A843 /* Images.xcassets in Resources */,
+				53943B1419D26D1A00E8443C /* image_1.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
